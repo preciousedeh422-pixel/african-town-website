@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+  background-color: #0b0a08;
+}
+
+::selection {
+  background: #c6a15b;
+  color: #0b0a08;
+}
+
+/* ---------- Eyebrow / label style ---------- */
+.eyebrow {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #c6a15b;
+}
+
+/* ---------- Meridian line: the site's signature device ----------
+   A thin traveling line + waypoint dot that recurs between sections,
+   standing in for the route between Lagos and Vientiane. */
+.meridian {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(198, 161, 91, 0.55) 20%,
+    rgba(198, 161, 91, 0.55) 80%,
+    transparent 100%
+  );
+}
+.meridian::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #c6a15b;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 12px 2px rgba(198, 161, 91, 0.65);
+}
+
+/* ---------- Custom cursor (desktop only) ---------- */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #f4eee2;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+  transition: width 0.25s cubic-bezier(0.22, 1, 0.36, 1), height 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.25s ease;
+}
+.cursor-label {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #0b0a08;
+  background: #c6a15b;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  opacity: 0;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cursor-dot,
+  .cursor-label {
+    display: none;
+  }
+}
+
+/* ---------- Scrollbar (webkit) ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0a08;
+}
+::-webkit-scrollbar-thumb {
+  background: #3a3226;
+  border-radius: 999px;
+}
+
+/* ---------- Dish placeholder art ----------
+   Used until real photography replaces it — see README. */
+.dish-plate {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 30% 20%, rgba(198, 161, 91, 0.18), transparent 55%),
+    linear-gradient(160deg, #1c1811 0%, #0f0d0a 100%);
+}
+.dish-plate::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(198, 161, 91, 0.18);
+}
+
+/* Focus visibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #c6a15b;
+  outline-offset: 3px;
+}
