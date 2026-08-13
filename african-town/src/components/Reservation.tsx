@@ -96,7 +96,6 @@ export default function Reservation() {
 
           <button
             type="submit"
-            disabled={!canSubmit}
             className="w-full rounded-full bg-gold py-4 text-xs uppercase tracking-widest2 text-ink transition-opacity disabled:cursor-not-allowed disabled:opacity-30"
           >
             Reserve Your Table
